@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1e3378;
+  --secondary-color: #707ca2;
+  --accent-color: #eb7d26;
+  --light-bg: #000;
+  --dark-bg: #0a0a0a;
+  --darker-bg: #050505;
+  --card-bg: #1a1a1a;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #333;
+  --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+body {
+  background: var(--light-bg);
+  overflow: hidden;
+  font-family: 'Times New Roman', Times, serif;
+  height: 100vh;
+}
+
+/*Menu de navigation*/
+.nav-bar {
+  width: 100%;
+  padding: 0.7rem 0;
+  background: var(--primary-color);
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1000;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-nav a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.logo-nav a:hover {
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+.nav-menu  {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+/*Acceiul*/
+.container-fluid {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Footer */
+.footer {
+  background: var(--primary-color);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 2px solid var(--primary-color);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+}

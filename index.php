@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?php
+if (isset($_GET['page']) && !empty(trim($_GET['page']))) {
+    $page = trim($_GET['page']);
+} else {
+    $page = 'home';
+}
+
+switch ($page) {
+    case 'acceuil': //1
+        require 'views/pages/acceuil.php';
+        break;
     
-</body>
-</html>
+    default: 
+        require 'views/coponements/header.php';
+        require 'views/pages/acceuil.php';
+        require 'views/coponements/footer.php';
+        break;
+}
