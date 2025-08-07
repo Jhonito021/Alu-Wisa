@@ -17,16 +17,16 @@
 
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Acceuil</a>
+                    <a href="#" class="nav-link"><i class="fas fa-home"></i> Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Devis</a>
+                    <a href="#" class="nav-link"><i class="fas fa-file-invoice"></i> Devis</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Commande</a>
+                    <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> Commande</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Historique</a>
+                    <a href="#" class="nav-link"><i class="fas fa-history"></i> Historique</a>
                 </li>
             </ul>
 

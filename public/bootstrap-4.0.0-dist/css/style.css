@@ -2,13 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 :root {
   --primary-color: #1e3378;
   --secondary-color: #707ca2;
   --accent-color: #eb7d26;
-  --light-bg: #000;
+  --light-bg: #f2ece8;
   --dark-bg: #0a0a0a;
   --darker-bg: #050505;
   --card-bg: #1a1a1a;
@@ -96,17 +97,35 @@ body {
 /*Acceiul*/
 .container-fluid {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.custom-hero {
+  box-shadow: var(--shadow-dark);
+  border-radius: 10px;
+  margin-bottom: 5rem;
+}
+
+.logo-wisa {
+  height: 150px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.card-body {
+  background: var(--light-bg);
+  box-shadow: var(--shadow-dark);
+  border-radius: 10px;
 }
 
 /* Footer */
 .footer {
-  background: var(--primary-color);
-  color: var(--text-primary);
+  color: var(--primary-color);
   text-align: center;
   padding: 1rem 0;
-  border-top: 2px solid var(--primary-color);
+  border-top: 1px solid var(--primary-color);
   position: relative;
+  margin-top: 2rem;
 }
 
 .footer::before {
