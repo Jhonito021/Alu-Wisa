@@ -8,7 +8,7 @@
                 </p>
             </div>
 
-            <div class="title-track">
+            <div class="logo-track">
                 <img src="public/img/LogoAluWisa.png" alt="image" class="logo-wisa">
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="col-md-4">
             <div class="card custom-card fade-in-cascade mb-4">
                 <div class="card-body">
-                    <i class="fas fa-shopping-cart fa-3x mb-3 text-primary"></i>
+                    <i class="fas fa-shopping-cart fa-3x mb-3 text-success"></i>
                     <h5 class="card-title">Commande</h5>
                     <p class="card-text"></p>
                 </div>
@@ -38,7 +38,7 @@
         <div class="col-md-4">
             <div class="card custom-card fade-in-cascade mb-4">
                 <div class="card-body">
-                    <i class="fas fa-history fa-3x mb-3 text-primary"></i>
+                    <i class="fas fa-history fa-3x mb-3 text-danger"></i>
                     <h5 class="card-title">Historiques</h5>
                     <p class="card-text"></p>
                 </div>

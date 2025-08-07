@@ -107,9 +107,12 @@ body {
 }
 
 .logo-wisa {
+  padding-bottom: 0.5rem;
   height: 150px;
   width: 250px;
   object-fit: cover;
+  border-bottom: 1px solid var(--primary-color);
+  border-radius: 5px;
 }
 
 .card-body {
