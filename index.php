@@ -6,10 +6,18 @@ if (isset($_GET['page']) && !empty(trim($_GET['page']))) {
 }
 
 switch ($page) {
-    case 'acceuil': //1
-        require 'views/pages/acceuil.php';
+    case 'devis': //1
+        require 'controllers/ControllerDevis.php';
         break;
     
+        case 'commande': //2
+            require 'controllers/ControllerCommande.php';
+            break;
+        
+        case 'historique': //3
+            require 'controllers/ControllerHistorique.php';
+            break;
+                
     default: 
         require 'views/coponements/header.php';
         require 'views/pages/acceuil.php';

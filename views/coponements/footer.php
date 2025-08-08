@@ -3,7 +3,8 @@
             <p>&copy; <span id="date"></span> Jhonito 021. Tous droits réservés.</p>
         </div>
     </footer>
-    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script src="public/bootstrap-4.0.0-dist/js/script.js"></script>
+    <script src="public/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const date = new Date();
         const option = { year: 'numeric', month: 'long'};

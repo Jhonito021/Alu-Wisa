@@ -17,21 +17,24 @@
 
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-home"></i> Acceuil</a>
+                    <a href="index.php?page=acceuil" class="nav-link"><i class="fas fa-home"></i> Acceuil</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-file-invoice"></i> Devis</a>
+                    <a href="index.php?page=devis" class="nav-link"><i class="fas fa-file-invoice"></i> Devis</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i> Commande</a>
+                    <a href="index.php?page=commande" class="nav-link"><i class="fas fa-shopping-cart"></i> Commande</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"><i class="fas fa-history"></i> Historique</a>
+                    <a href="index.php?page=historique" class="nav-link"><i class="fas fa-history"></i> Historique</a>
                 </li>
             </ul>
 
-            <button id="toogle-theme" class="btn btn-sm" style="border-radius: 50%;">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
+            <div class="horloge">
+                <div id="dateTime">
+                    <div id="heure"><span id="h">--</span><span class="blink-colon">:</span><span id="m">--</span><span class="blink-colon">:</span><span id="s">--</span></div>
+                        <div id="date">Chargement...</div>
+                    </div>
+                </div>
+            </div>
     </nav>

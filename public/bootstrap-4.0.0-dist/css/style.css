@@ -94,6 +94,24 @@ body {
   box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
 }
 
+/*DateTime*/
+#dateTime {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+
+#heure {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+
+#date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
 /*Acceiul*/
 .container-fluid {
   display: flex;
