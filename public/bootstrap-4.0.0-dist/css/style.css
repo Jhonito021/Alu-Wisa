@@ -28,7 +28,6 @@
 
 body {
   background: var(--light-bg);
-  overflow: hidden;
   font-family: 'Times New Roman', Times, serif;
   height: 100vh;
 }

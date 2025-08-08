@@ -18,6 +18,9 @@ switch ($page) {
             require 'controllers/ControllerHistorique.php';
             break;
                 
+        case 'fenetre':
+            require 'controllers/ControllerFenetre.php';
+            break;
     default: 
         require 'views/coponements/header.php';
         require 'views/pages/acceuil.php';

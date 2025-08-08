@@ -1,4 +1,4 @@
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container">
             <p>&copy; <span id="date"></span> Jhonito 021. Tous droits réservés.</p>
         </div>

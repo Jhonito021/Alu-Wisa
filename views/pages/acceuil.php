@@ -45,4 +45,15 @@
             </div>
         </div>
     </div>
+
+    <div class="alert alert-info">
+        <h6><i class="bi bi-info-circle"></i> Notre Application:</h6>
+            <?php
+                $conseils = [
+                    "Rendons les calculs entièrement automatique afin de gagne du temps.",
+                    "Accéder à l'ensemble des archives afin de consulter les documents ou enregistrements précédemment sauvegardés, pour un meuilleur suivi et une traçabilité compltète."
+                ];
+                echo $conseils[array_rand($conseils)];
+            ?>
+    </div>
 </div>
