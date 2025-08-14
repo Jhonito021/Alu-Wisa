@@ -18,7 +18,7 @@ switch ($page) {
             require 'controllers/ControllerHistorique.php';
             break;
                 
-        case 'fenetre': 
+        case 'fenetre': //4
             require 'controllers/ControllerFenetre.php';
             break;
     default: 
