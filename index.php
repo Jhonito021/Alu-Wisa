@@ -25,5 +25,5 @@ switch ($page) {
         require 'views/coponements/header.php';
         require 'views/pages/acceuil.php';
         require 'views/coponements/footer.php';
-        break; //modification
+        break; 
 }
