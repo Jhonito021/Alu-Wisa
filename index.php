@@ -19,7 +19,9 @@ switch ($page) {
             break;
                 
         case 'fenetre': //4
-            require 'controllers/ControllerFenetre.php';
+            require 'views/coponements/header.php';
+            include 'views/pages/fenetre.php';
+            require 'views/coponements/footer.php';
             break;
     default: 
         require 'views/coponements/header.php';
