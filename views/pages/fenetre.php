@@ -17,26 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Cas spécial < 1 m²
         if ($typeFenetre === "coulissante") {
             $prix = ($longueur + $largeur) * 2 * 100000;
-            $formule = "(L + l) * 2 * 100000";
+            $formule = "(L + l) x 2 x 100000";
         } else { // ouvrante
             $prix = ($longueur + $largeur) * 2 * 150000;
-            $formule = "(L + l) * 2 * 150000";
+            $formule = "(L + l) x 2 x 150000";
         }
     } else {
         // Cas >= 1 m²
         if ($typeFenetre === "coulissante") {
             $prix = $surface * 460000;
-            $formule = "L * l * 460000";
+            $formule = "L x l x 460000";
         } else { // ouvrante
             $prix = $surface * 520000;
-            $formule = "L * l * 520000";
+            $formule = "L x l x 520000";
         }
     }
 
     // Naco
     if ($typeFenetre === "naco") {
         $prix = ($longueur + $largeur) * 2 * 80000;
-        $formule = "(L + l) * 2 * 80000";
+        $formule = "(L + l) x 2 x 80000";
     }
 
     // Profil Alu
