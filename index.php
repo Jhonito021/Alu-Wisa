@@ -27,7 +27,7 @@ switch ($page) {
         
         case 'porte':
             require 'views/coponements/header.php';
-            
+            require 'views/coponements/nav.php';
             include 'views/pages/porte.php';
             require 'views/coponements/footer.php';
             break;
