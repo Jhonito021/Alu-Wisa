@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-md-4">
-            <a href="#" class="card-link-wrapper" style="text-decoration: none;">
+            <a href="index.php?page=porte" class="card-link-wrapper" style="text-decoration: none;">
                 <div class="card custom-card fade-in-cascade mb-4">
                     <div class="card-body text-success">
                         <i class="fas fa-door-open fa-3x mb-3"></i>

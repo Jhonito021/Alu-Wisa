@@ -1,10 +1,11 @@
-<?php 
-// Traitement du formulaire
-$resultat = "";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+<?php
+  // Traitement du formulaire
+  $resultat = "";
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $longueur = floatval($_POST['longueur']);
     $largeur = floatval($_POST['largeur']);
-    $typeFenetre = $_POST['type_fenetre'];
+    $typePorte = $_POST['typePorte'];
     $typeVitre = $_POST['type_vitre'];
     $profil_alu = $_POST['profil_alu'];
     $nbr = floatval($_POST['Nombre']);
@@ -12,55 +13,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $surface = $longueur * $largeur;
     $prix = 0;
     $formule = "";
-    $alu = "";
+    $alu = "T45";
 
-    if ($surface < 1) {
-      // Coulissante K56 < 1m²
-      if ($typeFenetre === "coulissante" && $profil_alu === "K56") {
-        $prix = ($longueur + $largeur) * 2 * 100000;
-        $formule = "(L + l) x 2 x 100000";
-        $alu = "K56";
-      } else { // Coulissante B65 < 1m²
-        $prix = ($longueur + $largeur) * 2 * 80000;
-        $formule = "(L + l) x 2 x 80000";
-        $alu = "B65";
-      }
-
+    if ($typePorte === "toute_vitre" && $profil_alu === "T45") {
+      // Porte toute vitré
+      $prix = $longueur * $largeur * 480000;
+      $formule = "L x l x 480000";
+      $alu = $alu;
+    } elseif ($typePorte === "demi_vitre" && $profil_alu === "T45") {
+      // Porte demi vitré
+      $prix = $longueur * $largeur * 520000;
+      $formule = "L x l x 520000";
+      $alu = $alu;
     } else {
-      // Coulissante K56 > 1m²
-      if ($typeFenetre === "coulissante" && $profil_alu === "K56") {
-        $prix = $surface * 460000;
-        $formule = "L x l x 460000";
-        $alu = "K56";
-      } else { // Coulissante B65 > 1m²
-        $prix = $surface * 420000;
-        $formule = "L x l x 420000";
-        $alu = "B65";
-      }
-    }
-
-    // Naco
-    if ($typeFenetre === "naco") {
-        $prix = ($longueur + $largeur) * 2 * 80000;
-        $formule = "(L + l) x 2 x 80000";
+      // Porte toute vitré
+      $prix = $longueur * $largeur * 540000;
+      $formule = "L x l x 540000";
+      $alu = $alu;
     }
 
     // Nombre
     if ($nbr >= 1) {
-        $res = $nbr;
-        $prix = $prix * $nbr;
+      $res = $nbr;
+      $prix = $prix * $nbr;
     }
 
     // Majoration vitre
     if ($typeVitre === "teinte") {
-        $prix *= 1.10;
+      $prix *= 1.10;
     }
 
     $prix = number_format($prix, 2, ',', ' ');
 
     $resultat = "
         <h5 class='text-primary'>Résultat :</h5>
-        <p>Fenêtre <strong>$typeFenetre</strong> avec vitre <strong>$typeVitre</strong></p>
+        <p>Fenêtre <strong>$typePorte</strong> avec vitre <strong>$typeVitre</strong></p>
         <p>Dimensions : $longueur m x $largeur<sup>(ht)</sup>m</p>
         <p>Profil Alu: <strong>$alu</strong></p>
         <p>Surface totale : <strong>$surface m²</strong></p>
@@ -68,22 +55,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Quantités: <strong>$res</strong></p>
         <p class='h5 text-success'>Prix estimé : $prix Ar</p>
     ";
-}
+  }
 ?>
 
 <div class="container mt-5">
-    <h1 class="text-center text-primary mb-4">
-      Fenêtre
-      <i class="fas fa-window-restore"></i>
-    </h1>
+  <h1 class="text-center text-success mb-4">
+    Porte
+    <i class="fas fa-door-open"></i>
+  </h1>
   <div class="row justify-content-center">
     <div class="col-md-6">
       <div class="card shadow-lg border-0 rounded-lg">
         <div class="card-header text-white text-center">
           <h4> 
-              <i class="fas fa-gear"></i> 
-              Configurer votre Fenêtre
-          </h4>
+            <i class="fas fa-gear"></i> 
+            Configurer votre Porte
+        </h4>
         </div>
         <div class="card-body">
           <form method="post">
@@ -102,21 +89,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <label class="form-control-placeholder" for="largeur">Largeur (m)</label>
             </div>
 
-            <!-- Type fenêtre -->
+            <!-- Type porte -->
             <div class="form-group">
-              <select name="type_fenetre" id="type_fenetre" class="form-control form-control-lg" required>
-                <option value="coulissante" selected>Coulissante</option>
-                <option value="ouvrante">Ouvrante</option>
-                <option value="naco">Naco</option>
+              <select name="typePorte" id="typePorte" class="form-control form-control-lg" required>
+                <option value="Toute vitré" selected>Toute vitré</option>
+                <option value="Demi vitré">Demi vitré</option>
+                <option value="Porte plaine">Porte plaine</option>
               </select>
-              <label class="form-control-placeholder" for="type_fenetre">Type de fenêtre</label>
+              <label class="form-control-placeholder" for="typePorte">Type de fenêtre</label>
             </div>
 
             <!-- Profil Alu -->
             <div class="form-group">
               <select name="profil_alu" id="profil_alu" class="form-control form-control-lg" required>
-                <option value="K56" selected>K56</option>
-                <option value="B65">B65</option>
+                <option value="T45" selected>T45</option>
               </select>
               <label class="form-control-placeholder" for="profil_alu">Alu</label>
             </div>

@@ -20,12 +20,20 @@ switch ($page) {
                 
         case 'fenetre': //4
             require 'views/coponements/header.php';
+            require 'views/coponements/nav.php';
             include 'views/pages/fenetre.php';
+            require 'views/coponements/footer.php';
+            break;
+        
+        case 'porte':
+            require 'views/coponements/header.php';
+            require 'views/coponements/nav.php';
+            include 'views/pages/porte.php';
             require 'views/coponements/footer.php';
             break;
     default: 
         require 'views/coponements/header.php';
         require 'views/pages/acceuil.php';
         require 'views/coponements/footer.php';
-        break; 
+        break;
 }
