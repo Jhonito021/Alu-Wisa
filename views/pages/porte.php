@@ -1,4 +1,5 @@
 <?php
+require 'config/db.php';
   // Traitement du formulaire
   $resultat = "";
 
@@ -8,26 +9,26 @@
     $typePorte = $_POST['typePorte'];
     $typeVitre = $_POST['type_vitre'];
     $profil_alu = $_POST['profil_alu'];
-    $nbr = floatval($_POST['Nombre']);
+    $nbr = floatval($_POST['nombre']);
 
     $surface = $longueur * $largeur;
-    $prix = 0;
+    $prixTotal = 0;
     $formule = "";
     $alu = "T45";
 
     if ($typePorte === "toute_vitre" && $profil_alu === "T45") {
       // Porte toute vitré
-      $prix = $longueur * $largeur * 480000;
+      $prixTotal = $longueur * $largeur * 480000;
       $formule = "L x l x 480000";
       $alu = $alu;
     } elseif ($typePorte === "demi_vitre" && $profil_alu === "T45") {
       // Porte demi vitré
-      $prix = $longueur * $largeur * 520000;
+      $prixTotal = $longueur * $largeur * 520000;
       $formule = "L x l x 520000";
       $alu = $alu;
     } else {
       // Porte toute vitré
-      $prix = $longueur * $largeur * 540000;
+      $prixTotal = $longueur * $largeur * 540000;
       $formule = "L x l x 540000";
       $alu = $alu;
     }
@@ -35,26 +36,38 @@
     // Nombre
     if ($nbr >= 1) {
       $res = $nbr;
-      $prix = $prix * $nbr;
+      $prixTotal = $prixTotal * $nbr;
     }
 
     // Majoration vitre
     if ($typeVitre === "teinte") {
-      $prix *= 1.10;
+      $prixTotal *= 1.10;
     }
 
-    $prix = number_format($prix, 2, ',', ' ');
+    $prixFormat = number_format($prixTotal, 2, ',', ' ');
 
     $resultat = "
         <h5 class='text-primary'>Résultat :</h5>
-        <p>Fenêtre <strong>$typePorte</strong> avec vitre <strong>$typeVitre</strong></p>
+        <p>Porte <strong>$typePorte</strong> avec vitre <strong>$typeVitre</strong></p>
         <p>Dimensions : $longueur m x $largeur<sup>(ht)</sup>m</p>
         <p>Profil Alu: <strong>$alu</strong></p>
         <p>Surface totale : <strong>$surface m²</strong></p>
         <p>Formule appliquée : <strong class='text-danger'>$formule</strong></p>
         <p>Quantités: <strong>$res</strong></p>
-        <p class='h5 text-success'>Prix estimé : $prix Ar</p>
+        <p class='h5 text-success'>Prix estimé : $prixFormat Ar</p>
     ";
+  }
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $longueur = $_POST['longueur'];
+    $largeur = $_POST['largeur'];
+    $typePorte = $_POST['typePorte'];
+    $profil_alu = $_POST['profil_alu'];
+    $typeVitre = $_POST['type_vitre'];
+    $nbr = $_POST['nombre'];
+  
+    $stmt = $pdo -> prepare("INSERT INTO portes (longueur , largeur, type_porte, profil_alu, type_vitre, surface, prix, nombre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt -> execute([$longueur, $largeur, $typePorte, $profil_alu, $typeVitre, $surface, $prixTotal, $nbr]);
   }
 ?>
 
@@ -96,7 +109,7 @@
                 <option value="Demi vitré">Demi vitré</option>
                 <option value="Porte plaine">Porte plaine</option>
               </select>
-              <label class="form-control-placeholder" for="typePorte">Type de fenêtre</label>
+              <label class="form-control-placeholder" for="typePorte">Type de porte</label>
             </div>
 
             <!-- Profil Alu -->
@@ -118,9 +131,9 @@
 
             <!-- Nombre -->
             <div class="form-group">
-              <input type="number" step="1" min="0" name="Nombre" id="Nombre" 
+              <input type="number" step="1" min="0" name="nombre" id="nombre" 
                      class="form-control form-control-lg" placeholder=" " value="1" required>
-              <label class="form-control-placeholder" for="Nombre">Nombres</label>
+              <label class="form-control-placeholder" for="nombre">Nombres</label>
             </div>
 
             <button type="submit" class="btn btn-success btn-block btn-lg">

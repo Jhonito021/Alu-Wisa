@@ -1,4 +1,5 @@
 <?php 
+require_once 'config/db.php';
 // Traitement du formulaire
 $resultat = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,21 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $typeFenetre = $_POST['type_fenetre'];
     $typeVitre = $_POST['type_vitre'];
     $profil_alu = $_POST['profil_alu'];
-    $nbr = floatval($_POST['Nombre']);
+    $nbr = floatval($_POST['nombre']);
 
     $surface = $longueur * $largeur;
-    $prix = 0;
+    $prixTotal = 0;
     $formule = "";
     $alu = "";
 
     if ($surface < 1) {
       // Coulissante K56 < 1m²
       if ($typeFenetre === "coulissante" && $profil_alu === "K56") {
-        $prix = ($longueur + $largeur) * 2 * 100000;
+        $prixTotal = ($longueur + $largeur) * 2 * 100000;
         $formule = "(L + l) x 2 x 100000";
         $alu = "K56";
       } else { // Coulissante B65 < 1m²
-        $prix = ($longueur + $largeur) * 2 * 80000;
+        $prixTotal = ($longueur + $largeur) * 2 * 80000;
         $formule = "(L + l) x 2 x 80000";
         $alu = "B65";
       }
@@ -29,11 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
       // Coulissante K56 > 1m²
       if ($typeFenetre === "coulissante" && $profil_alu === "K56") {
-        $prix = $surface * 460000;
+        $prixTotal = $surface * 460000;
         $formule = "L x l x 460000";
         $alu = "K56";
       } else { // Coulissante B65 > 1m²
-        $prix = $surface * 420000;
+        $prixTotal = $surface * 420000;
         $formule = "L x l x 420000";
         $alu = "B65";
       }
@@ -41,22 +42,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Naco
     if ($typeFenetre === "naco") {
-        $prix = ($longueur + $largeur) * 2 * 80000;
+        $prixTotal = ($longueur + $largeur) * 2 * 80000;
         $formule = "(L + l) x 2 x 80000";
     }
 
     // Nombre
     if ($nbr >= 1) {
         $res = $nbr;
-        $prix = $prix * $nbr;
+        $prixTotal = $prixTotal * $nbr;
     }
 
     // Majoration vitre
     if ($typeVitre === "teinte") {
-        $prix *= 1.10;
+        $prixTotal *= 1.10;
     }
 
-    $prix = number_format($prix, 2, ',', ' ');
+    $prixFormat = number_format($prixTotal, 0, ',', ' ');
+
 
     $resultat = "
         <h5 class='text-primary'>Résultat :</h5>
@@ -66,8 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>Surface totale : <strong>$surface m²</strong></p>
         <p>Formule appliquée : <strong class='text-danger'>$formule</strong></p>
         <p>Quantités: <strong>$res</strong></p>
-        <p class='h5 text-success'>Prix estimé : $prix Ar</p>
+        <p class='h5 text-success'>Prix estimé : $prixFormat Ar</p>
     ";
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $longueur = $_POST['longueur'];
+  $largeur = $_POST['largeur'];
+  $typeFenetre = $_POST['type_fenetre'];
+  $profil_alu = $_POST['profil_alu'];
+  $typeVitre = $_POST['type_vitre'];
+  $nbr = $_POST['nombre'];
+
+  $stmt = $pdo -> prepare("INSERT INTO fenetres (longueur , largeur, type_fenetre, profil_alu, type_vitre, surface, prix, nombre) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt -> execute([$longueur, $largeur, $typeFenetre, $profil_alu, $typeVitre, $surface, $prixTotal, $nbr]);
 }
 ?>
 
@@ -91,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Longueur -->
             <div class="form-group">
               <input type="number" step="0.01" min="0" name="longueur" id="longueur" 
-                     class="form-control form-control-lg" placeholder=" " required>
+                     class="form-control form-control-lg" placeholder="" required>
               <label class="form-control-placeholder" for="longueur">Longueur (m)</label>
             </div>
 
@@ -132,9 +146,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Nombre -->
             <div class="form-group">
-              <input type="number" step="1" min="0" name="Nombre" id="Nombre" 
+              <input type="number" step="1" min="0" name="nombre" id="nombre" 
                      class="form-control form-control-lg" placeholder=" " value="1" required>
-              <label class="form-control-placeholder" for="Nombre">Nombres</label>
+              <label class="form-control-placeholder" for="nombre">Nombres</label>
             </div>
 
             <button type="submit" class="btn btn-success btn-block btn-lg">
