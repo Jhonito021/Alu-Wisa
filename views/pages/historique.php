@@ -24,6 +24,7 @@
               <th>Nombres</th>
               <th>Prix</th>
               <th>Date/Heure</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +37,12 @@
               <td><?=  $fenetre['nombre']?></td>
               <td><?= number_format($fenetre['prix'], 0, ',', ' ') ?> Ar</td>
               <td><?= $fenetre['date_creation']?></td>
+              <td>
+                <form method="POST" style="display: inline;">
+                  <input type="hidden" name="delete_id" value="<?= $fenetre['id'] ?>">
+                  <button type="submit" class="btn btn-sm btn-danger" onclick="return('Confirmer la suppression');">Supprimer</button>
+                </form>
+              </td>
             </tr>
             <?php endforeach; ?>
           </tbody>
