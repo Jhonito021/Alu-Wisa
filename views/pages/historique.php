@@ -40,7 +40,7 @@
               <td>
                 <form method="POST" style="display: inline;">
                   <input type="hidden" name="delete_id" value="<?= $fenetre['id'] ?>">
-                  <button type="submit" class="btn btn-sm btn-danger" onclick="return('Confirmer la suppression');">Supprimer</button>
+                  
                 </form>
               </td>
             </tr>
