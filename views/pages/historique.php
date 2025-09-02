@@ -37,12 +37,7 @@
               <td><?=  $fenetre['nombre']?></td>
               <td><?= number_format($fenetre['prix'], 0, ',', ' ') ?> Ar</td>
               <td><?= $fenetre['date_creation']?></td>
-              <td>
-                <form method="POST" style="display: inline;">
-                  <input type="hidden" name="delete_id" value="<?= $fenetre['id'] ?>">
-                  
-                </form>
-              </td>
+              
             </tr>
             <?php endforeach; ?>
           </tbody>
